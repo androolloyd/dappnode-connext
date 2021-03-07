@@ -1,0 +1,11 @@
+[
+  {
+    "labels": {
+      "job": "connext.public.dappnode.eth",
+      "service": "router.connext.public.dappnode"
+    },
+    "targets": [
+      "router.connext.public.dappnode:8000"
+    ]
+  }
+]
