@@ -1,0 +1,29 @@
+{
+  "name": "connext.public.dappnode.eth",
+  "version": "0.1.0",
+  "description": "",
+  "type": "service",
+  "author": "androolloyd <opensource@andrewredden.com> (https://github.com/androolloyd)",
+  "contributors": [
+    "connextproject (https://github.com/connextproject)"
+  ],
+  "categories": [
+    "Developer tools", "Blockchain", "Communications"
+  ],
+  "keywords": [
+    "connext"
+  ],
+  "globalEnvs": {
+    "all": true
+  },
+  "backup": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/androolloyd/dappnode-connext"
+  },
+  "links": {
+    "homepage": "https://connext.network"
+  },
+  "license": "GPL v3"
+}

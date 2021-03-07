@@ -1,0 +1,62 @@
+version: "3.4"
+services:
+  node:
+    image: "connextproject/vector_node:latest"
+    environment:
+      VECTOR_CONFIG: >-
+        {  "adminToken": "changeMe",  "chainProviders": {    "1":
+        "http://geth.dappnode:8545"  },  "logLevel": "debug",  "messagingUrl":
+        "https://messaging.connext.network",  "production": true,
+        "allowedSwaps": [],  "rebalanceProfiles": []}
+      VECTOR_PROD: "true"
+      VECTOR_MNEMONIC: ""
+      VECTOR_DATABASE_URL: ""
+      VECTOR_PG_DATABASE: vector
+      VECTOR_PG_HOST: database-node
+      VECTOR_PG_PASSWORD: changeMe
+      VECTOR_PG_PORT: "5432"
+      VECTOR_PG_USERNAME: vector
+  router:
+    image: "connextproject/vector_router:latest"
+    environment:
+      VECTOR_CONFIG: >-
+        {  "adminToken": "changeMe",  "chainProviders": {    "1":
+        "http://geth.dappnode:8545"  },  "logLevel": "debug",  "messagingUrl":
+        "https://messaging.connext.network",  "production": true,
+        "allowedSwaps": [],  "rebalanceProfiles": []}
+      VECTOR_PROD: "true"
+      VECTOR_NODE_URL: "http://node:8000"
+      VECTOR_DATABASE_URL: ""
+      VECTOR_PG_DATABASE: vector
+      VECTOR_PG_HOST: database-router
+      VECTOR_PG_PASSWORD: ""
+      VECTOR_PG_PORT: "5432"
+      VECTOR_PG_USERNAME: vector
+      VECTOR_MNEMONIC: ""
+  database-node:
+    image: "connextproject/vector_database:latest"
+    volumes:
+      - "database_node:/var/lib/postgresql/data"
+    environment:
+      AWS_ACCESS_KEY_ID: ""
+      AWS_SECRET_ACCESS_KEY: ""
+      POSTGRES_DB: vector
+      POSTGRES_PASSWORD: changeMe
+      POSTGRES_USER: vector
+      VECTOR_ADMIN_TOKEN: changeMe
+      VECTOR_PROD: "true"
+  database-router:
+    image: "connextproject/vector_database:latest"
+    volumes:
+      - "database_router:/var/lib/postgresql/data"
+    environment:
+      AWS_ACCESS_KEY_ID: ""
+      AWS_SECRET_ACCESS_KEY: ""
+      POSTGRES_DB: vector
+      POSTGRES_PASSWORD: changeMe
+      POSTGRES_USER: vector
+      VECTOR_ADMIN_TOKEN: changeMe
+      VECTOR_PROD: "true"
+volumes:
+  database_node: {}
+  database_router: {}
